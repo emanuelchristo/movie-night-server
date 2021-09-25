@@ -178,6 +178,22 @@ module.exports = (io, { users, rooms }) => {
 		io.to(roomId).emit('room:updated', room)
 	}
 
+	function setRoomInfo({ userId, roomId, data }) {
+		console.log('setRoomInfo')
+		// Verifying incoming data
+		const user = verifyUser(userId)
+		const room = verifyRoom(roomId)
+		const isHost = checkIfHost(user, room)
+		if (!(user && room && isHost)) return
+
+		const { roomName, imageLink } = data
+		room.name = roomName
+		room.imageLink = imageLink
+
+		// Pushing changes to participants
+		io.to(roomId).emit('room:updated', room)
+	}
+
 	function stop({ roomId, userId }) {
 		console.log('stop')
 		// Verifying incoming data
@@ -211,7 +227,7 @@ module.exports = (io, { users, rooms }) => {
 			}
 		} else {
 			const host = verifyUser(room.host.id)
-			io.to(host.socketId).emit('room:syncrequest')
+			if (host) io.to(host.socketId).emit('room:syncrequest')
 		}
 
 		// Pushing changes to participants
@@ -254,5 +270,5 @@ module.exports = (io, { users, rooms }) => {
 		return user.id === room.host.id
 	}
 
-	return { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, stop, sync, leaveRoom }
+	return { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, setRoomInfo, stop, sync, leaveRoom }
 }

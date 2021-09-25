@@ -38,7 +38,7 @@ const rooms = []
 
 // Importing route handlers - socket.io
 const { login, logout } = require('./auth-handler')(io, { users, rooms })
-const { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, stop, sync, leaveRoom } = require('./room-handler')(io, { users, rooms })
+const { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, setRoomInfo, stop, sync, leaveRoom } = require('./room-handler')(io, { users, rooms })
 
 // Assigning route handlers - socket.io
 const onConnection = (socket) => {
@@ -53,6 +53,7 @@ const onConnection = (socket) => {
 	socket.on('room:addvideo', addVideo)
 	socket.on('room:removevideo', removeVideo)
 	socket.on('room:startroom', startRoom)
+	socket.on('room:setroominfo', setRoomInfo)
 	socket.on('room:stop', stop)
 	socket.on('room:sync', sync)
 	socket.on('room:leave', leaveRoom)
