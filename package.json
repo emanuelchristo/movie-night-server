@@ -15,7 +15,6 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "nedb": "^1.8.0",
     "randomstring": "^1.2.1",
     "socket.io": "^2.4.1",
     "uuid": "^8.3.2"
