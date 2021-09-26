@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const httpServer = http.createServer(app)
-const io = socketio(httpServer)
+const io = socketio(httpServer, { cors: true, origins: ['*:*'] })
 
 // Data
 const users = []
