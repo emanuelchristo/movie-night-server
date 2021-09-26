@@ -1,5 +1,5 @@
 const express = require('express')
-const http = require('http')
+const { createServer } = require('http')
 const { Server } = require('socket.io')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -16,13 +16,8 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
 
 // Creating server
 const app = express()
-
-// Express middlewares
 app.use(cors())
-// app.use(bodyParser.urlencoded({ extended: true }))
-// app.use(bodyParser.json())
-
-const httpServer = http.createServer(app)
+const httpServer = createServer(app)
 const io = new Server(httpServer, {
 	cors: {
 		origin: true,

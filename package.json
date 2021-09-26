@@ -1,23 +1,24 @@
 {
-  "name": "movie-night-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon app.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "lodash": "^4.17.21",
-    "nodemon": "^2.0.13",
-    "randomstring": "^1.2.1",
-    "socket.io": "^4.2.0",
-    "uuid": "^8.3.2"
-  }
+	"name": "movie-night-server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon app.js",
+		"start": "node app.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"cookie-parser": "^1.4.5",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"lodash": "^4.17.21",
+		"nodemon": "^2.0.13",
+		"randomstring": "^1.2.1",
+		"socket.io": "^4.2.0",
+		"uuid": "^8.3.2"
+	}
 }
