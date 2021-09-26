@@ -1,6 +1,6 @@
 const express = require('express')
 const http = require('http')
-const socketio = require('socket.io')
+const { Server } = require('socket.io')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -19,12 +19,11 @@ const app = express()
 
 // Express middlewares
 app.use(cors())
-app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json())
 
 const httpServer = http.createServer(app)
-const io = socketio(httpServer, {
+const io = new Server(httpServer, {
 	cors: {
 		origin: true,
 		methods: ['GET', 'POST'],
