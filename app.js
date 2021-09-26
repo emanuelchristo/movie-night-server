@@ -16,21 +16,15 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
 
 // Creating server
 const app = express()
-const httpServer = http.createServer(app)
-const io = socketio(httpServer, {
-	cors: {
-		origin: FRONTEND_URL,
-		methods: ['GET', 'POST'],
-		transports: ['websocket', 'polling'],
-		credentials: false,
-	},
-})
 
 // Express middlewares
-app.use(cors({ origin: true }))
+app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+const httpServer = http.createServer(app)
+const io = socketio(httpServer)
 
 // Data
 const users = []
