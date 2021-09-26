@@ -17,7 +17,7 @@
     "lodash": "^4.17.21",
     "nodemon": "^2.0.13",
     "randomstring": "^1.2.1",
-    "socket.io": "^2.4.1",
+    "socket.io": "^4.2.0",
     "uuid": "^8.3.2"
   }
 }
