@@ -18,13 +18,18 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
 const app = express()
 
 // Express middlewares
-app.use(cors({ origin: '*' }))
+app.use(cors())
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const httpServer = http.createServer(app)
-const io = socketio(httpServer, { cors: { origins: '*' } })
+const io = socketio(httpServer, {
+	cors: {
+		origin: true,
+		methods: ['GET', 'POST'],
+	},
+})
 
 // Data
 const users = []
