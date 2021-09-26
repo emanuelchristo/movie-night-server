@@ -99,8 +99,9 @@ module.exports = (io, { users, rooms }) => {
 		// Removing user from room on disconnect
 		socketRef.on('disconnecting', () => {
 			console.log('disconnecting')
-			const roomId = Object.keys(socketRef.rooms).find((room) => room !== socketRef.id)
+			const roomId = Array.from(socketRef.rooms).find((room) => room !== socketRef.id)
 			const user = users.find((user) => user.socketId === socketRef.id)
+			// console.log('here', user, roomId)
 			if (user && roomId) {
 				console.log('leaving')
 				const userId = user.id
