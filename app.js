@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 // const rooms = new Datastore({ filename: './data/rooms', autoload: true })
 
 // Constants
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5300
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
 
 // Creating server
