@@ -17,6 +17,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'
 // Creating server
 const app = express()
 app.use(cors())
+
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
 	cors: {
@@ -31,7 +32,8 @@ const rooms = []
 
 // Importing route handlers - socket.io
 const { login, logout } = require('./auth-handler')(io, { users, rooms })
-const { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, setRoomInfo, stop, sync, leaveRoom } = require('./room-handler')(io, { users, rooms })
+const { createRoom, getRoom, joinRoom, addVideo, removeVideo, startRoom, setRoomInfo, stop, sync, leaveRoom } =
+	require('./room-handler')(io, { users, rooms })
 
 // Assigning route handlers - socket.io
 const onConnection = (socket) => {
@@ -51,6 +53,11 @@ const onConnection = (socket) => {
 	socket.on('room:sync', sync)
 	socket.on('room:leave', leaveRoom)
 }
+
+app.get('/ping', (req, res) => {
+	res.send('pong')
+	console.log('ping', req.ip)
+})
 
 // Starting http and socketio servers
 io.on('connection', onConnection)
